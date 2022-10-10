@@ -1,9 +1,4 @@
 # Function designed to call in NASS data on yield and acreage for the all states in the period between 1981 and 2021
-# Updated: 7/22/2022
-# Last change author: Avery
-
-## One thing we need to change is how the code handles limited data (i.e., the (D) value)
-## Add if-else for retaining survey data for tree crop areas
 
 Call_NASS_Data <- function(Crop, 
                            Crop_Class, 
@@ -365,7 +360,7 @@ Call_NASS_Data <- function(Crop,
     select(-initial_year)
   
   
-  ## Dealing with weird units ##
+  ## Dealing with multiple units for an individual state-crop-year ##
   
   test.for.boxes <- as.character(c("BOXES", "TONS") %in% unique(output.data$Production_Units))
   
@@ -410,13 +405,13 @@ Call_NASS_Data <- function(Crop,
     
   }
   
-  ## If we're doing theses inside the call, this is probably a more robust way of dealing with it, calling directly by name and filtering.
-  
+
   if(unique(output.data$Crop) == "TANGELOS"){ 
     
     output.data <- output.data %>%
       filter(Price_Received_Units == "$ / BOX, PHD EQUIV" | is.na(Price_Received_Units))
   }
+  
   ## Return the data.
   
   return(output.data)

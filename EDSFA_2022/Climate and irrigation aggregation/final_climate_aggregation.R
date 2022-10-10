@@ -1,10 +1,11 @@
 #Aggregate climate data, only including months with mean min temperature > 0
-#Output mean, sd, and instability (calculated two ways -mean/sd) and sd/mean) of ppt and temperature by state and decade
+#Output mean, sd, and instability of ppt and temperature by state and decade
 
 library(tidyverse)
 library(patchwork)
+library(usmap)
 
-#Load input files Kyoung prepared; these are monthly average PRISM data that have been weighted by harvested area
+#Load prepared input files: these are monthly average PRISM data that have been weighted by harvested area at the grid cell level
 ppt <- read.csv("./Climate and irrigation aggregation/prism_state_level_harvested_area_weighted_ppt_1981_2020_20Apr2022.csv") %>%
   select(-X) %>%
   mutate(year = substr(.$time, 1, 4), 
@@ -19,10 +20,6 @@ tmin <- read.csv("./Climate and irrigation aggregation/prism_state_level_harvest
   select(-X) %>%
   mutate(year = substr(.$time, 1, 4), 
          month = substr(.$time, 6, 7))
-
-#Check number of months per year for each state
-#check <- aggregate(month~year + state_abb, ppt, NROW)
-#check <- aggregate(month~year + state_abb, tavg, NROW)
 
 #Merge ppt and tavg data, filter to only include months > 0
 clim <- merge(ppt, tavg, by = c("state_id", "time", "state_abb", "year", "month")) 
@@ -40,15 +37,15 @@ clim_agg <- aggregate(cbind(m_prism_ppt, m_prism_tavg)~state_id + year + state_a
   mutate(fips = fips(state_abb)) %>%
   select(-state_id)
 
-#Calculate mean and standard deviations by state and decade; calculate instability using both the renard and tilman method (-mean/sd) and as the CV (sd/mean)
+#Calculate mean and standard deviations by state and decade; calculate instability as the CV (sd/mean)
 clim_output <- clim_agg %>%
-  group_by(fips, decade) %>%
-  mutate(mean_ppt = mean(m_prism_ppt), mean_tavg = mean(m_prism_tavg), 
+  group_by(fips, decade, state_abb) %>%
+  summarize(mean_ppt = mean(m_prism_ppt), mean_tavg = mean(m_prism_tavg), 
          sd_ppt = sd(m_prism_ppt), sd_tavg = sd(m_prism_tavg)) %>%
   select(fips, state_abb, decade, mean_ppt, mean_tavg, sd_ppt, sd_tavg) %>%
+  ungroup() %>%
   distinct() %>%
-  mutate(ppt_instability_rt = -1*(mean_ppt/sd_ppt), tavg_instability_rt = -1*(mean_tavg/sd_tavg), 
-         ppt_instability_cv = (sd_ppt/mean_ppt), tavg_instability_cv = (sd_tavg/mean_tavg)) 
+  mutate(ppt_instability_cv = (sd_ppt/mean_ppt), tavg_instability_cv = (sd_tavg/mean_tavg))
   
 #Plot precip data to see if it makes sense 
 plot_usmap(data = clim_output, values = "mean_ppt", size = 0.1, exclude = c("HI", "AK")) +
@@ -68,15 +65,6 @@ plot_usmap(data = clim_output, values = "mean_tavg", size = 0.1, exclude = c("HI
   theme(panel.background = element_rect(colour = "black")) + 
   facet_wrap(~decade)
 
-#plot different instability metrics; we will want to choose one method
-a <- ggplot(clim_output, aes(x = ppt_instability_rt)) + geom_histogram()
-b <- ggplot(clim_output, aes(x = ppt_instability_cv)) + geom_histogram()
-
-c <- ggplot(clim_output, aes(x = tavg_instability_rt)) + geom_histogram()
-d <- ggplot(clim_output, aes(x = tavg_instability_cv)) + geom_histogram()
-
-(a|b)/(c|d)
-
-write.csv(clim_output, "decadal_climate_model_input.csv")
-write.csv(clim_agg, "annual_climate_model_input.csv")
+write.csv(clim_output, "./Data/Inputs/Model_covariates/decadal_climate_model_input.csv")
+write.csv(clim_agg, "./Data/Inputs/Model_covariates/annual_climate_model_input.csv")
 

@@ -1,3 +1,5 @@
+## Check to be sure all data was successfully pulled for all crops in the comodity input list. 
+# If crops are missing (typically due to server timeouts), retry the query. 
 
 Check_NASS_Failures <- function(original.data,
                                 generated.data){

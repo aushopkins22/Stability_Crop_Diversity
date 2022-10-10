@@ -1,5 +1,4 @@
-### Convert NASS data to kg and then clean
-### Last modified: 7/22/2022
+### Convert NASS data to kg, aggregate across crop subgroups.
 
 Initial_Conversion <- function(input.data,
                                kcal.conversion.data, 

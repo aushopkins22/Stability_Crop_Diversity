@@ -34,16 +34,19 @@ Calculate_Shannons_Diversity <- function(input.file){
     group_by(State_Abbr, fips, Year) %>%
     summarize(total_cropland = sum(Crop_Area_ha, na.rm = T), 
               total_kcal = sum(Production_kcal, na.rm = T), 
-              total_usd = sum(Production_USD, na.rm = T))
+              total_usd = sum(Production_USD, na.rm = T)) %>%
+    ungroup()
   
   #Join totals with crop-specific observations, calculate pi*ln(pi) for each variable
   calculate_crop_vals_for_shannons <- left_join(input.file, totals) %>%
-    mutate(Pi_ln_Pi_area = (Crop_Area_ha/total_cropland)*log(Crop_Area_ha/total_cropland), 
+    group_by(Crop_Name, State_Abbr, fips, Year) %>%
+    summarize(Pi_ln_Pi_area = (Crop_Area_ha/total_cropland)*log(Crop_Area_ha/total_cropland), 
            Pi_ln_Pi_usd = (Production_USD/total_usd)*log(Production_USD/total_usd), 
            Pi_ln_Pi_kcal = (Production_kcal/total_kcal)*log(Production_kcal/total_kcal)) %>%
     mutate(Pi_ln_Pi_area = replace_na(Pi_ln_Pi_area, 0), 
            Pi_ln_Pi_usd = replace_na(Pi_ln_Pi_usd, 0),
-           Pi_ln_Pi_kcal = replace_na(Pi_ln_Pi_kcal, 0)) 
+           Pi_ln_Pi_kcal = replace_na(Pi_ln_Pi_kcal, 0)) %>%
+    ungroup()
   
   #Summarize to state-level annual values of Shannons and ENCS for each variable
   calculate_shannons <- calculate_crop_vals_for_shannons %>%

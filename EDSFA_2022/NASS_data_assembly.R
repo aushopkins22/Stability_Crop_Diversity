@@ -1,6 +1,4 @@
 # NASS Data curation code
-# Updated: 7/27/2022
-# Last change author: Avery
 
 ### Clear working environment.
 
@@ -18,20 +16,21 @@ library(patchwork)
 library(usmap)
 
 ##### Prepare data and source functions #####
+
 ### Set NASS API Key.
 
-nassqs_auth("11FCF4DC-1B74-3577-B8A5-5F09B27E2390")
+#nassqs_auth("API KEY HERE")
 
-### Input data 
+### Load crop list (input data for NASS query)
 
-commodity.list <- read_csv("./Data/Inputs/Commodity_Input_Data_Trees.csv") 
+commodity.list <- read_csv("./Data/Inputs/Commodity_Input_Data.csv") 
 
-## Conversions data
+## Load unit conversions data
 
 kcal_conversions <- read_csv("./Data/Inputs/kcal_conversion.csv")
 price_conversions <- read_csv("./Data/Inputs/price_conversion.csv")
 
-## Read in PPI data
+## Load producer price index data for inflation adjustment
 
 ppi.data <- read_csv("./Data/Inputs/Annual_PPI_Data.csv")
 
@@ -53,7 +52,7 @@ commodity.data <- tibble(State_Abbr = "",
 
 ### Read in functions from the Function directory.
 
-source("./Functions/Call_NASS_Data_updated.R") 
+source("./Functions/Call_NASS_Data.R") 
 
 source("./Functions/Checking_NASS_Failures.R")
 
@@ -90,15 +89,16 @@ for(i in 1:nrow(commodity.list)) {
 
 commodity.data <- commodity.data[-1,]
 
-## Check if all the data was pulled (keep re-running this until you get a complete data message).
+## Check to be sure all the data was pulled. Failures can occur due to server time outs. 
+## Re-run this until you get a complete data message. 
 
 commodity.data <- Check_NASS_Failures(commodity.list,
                                       commodity.data)
 
-## Check for crops with multiple utilization practices
+## Check for crops with multiple utilization practices. 
+## If there is an "All Utilization Practices" group, select it. If not, retain utilization subgroups.
 
 commodity.data <- Check_Utilization_Duplicates(commodity.data)
-
 
 ##### Check, convert, and clean the data #####
 
@@ -109,8 +109,7 @@ summary <- NASS_Summary_Table(commodity.data,
 
 write.csv(commodity.data, "./Data/Outputs/Intermediate_Data/Commodity_Data.csv")
 
-
-## Quick plot of area, production, and price over time for each state and crop to check data coverage of original pulled data
+## Quick plot of area, production, and price over time for each state and crop to check data coverage
 
 check_data_figs <- function(crop, state){
   
@@ -142,32 +141,26 @@ check_data_figs <- function(crop, state){
 
 check_data_figs("OATS", "AL")
 
-#Check relationship between area and production for all states.
-
-# ggplot(commodity.data, aes(x = Crop_Area_ha, y = Production_Weight)) + 
-#  geom_point(aes(color = State_Abbr)) + 
-#  theme_classic() + facet_wrap(~Crop, scales = "free")
-
-#This function converts the data to standard units (prices in $/kg and production in kg) and collapses most utilization practices (excluding those that have different caloric contents, such as shelled vs. unshelled almonds)
+## Convert the data to standard units (prices in $/kg and production in kg) and collapse most utilization practices (excluding those that have different caloric contents, such as shelled vs. unshelled almonds)
 
 clean.kg.data <- Initial_Conversion(input.data = commodity.data,
                                     kcal.conversion.data = kcal_conversions, 
                                     price.conversion.data = price_conversions)
 
-#This function fills gaps up to the specified year tolerance, calculates total calories and dollars, and collapses remaining utilization practices. 
+## Fill gaps up to the specified year tolerance, calculate caloric and USD production for each crop-state-year, and collapse remaining utilization practices. 
 
 clean.filled.data <- Fill_and_Convert(input.data = clean.kg.data,
                                       year.tolerance = 5,
                                       ppi.data = ppi.data)
 
-#Store the clean data
+## Store the clean data
 
-write.csv(clean.filled.data, "./Data/Outputs/Intermediate_Data/Clean_Data.csv")
+#write.csv(clean.filled.data, "./Data/Outputs/Intermediate_Data/Clean_Data.csv")
 
 
 ##### Final data checks #####
 
-#Quick look at some summary stats
+## Quick look at some summary stats
 
 #NASS_Summary_Table(clean.filled.data,
 #                   commodity.list)
@@ -201,7 +194,7 @@ a/b/c
 
 yield_boxplot(unique(clean.filled.data$Crop_Name)[1])
 
-#Timeseries figs for filled data
+## Plot timeseries of crop area and all production units for filled data
 check_clean_data <- function(crop, state){
   
   sub <- clean.filled.data %>%
@@ -240,7 +233,7 @@ check_clean_data <- function(crop, state){
   a/b/c/d
 }
 
-check_clean_data("ALMONDS-ALL CLASSES", "CA")
+#check_clean_data("ALMONDS-ALL CLASSES", "CA")
 
 #Check that all expected kg production data are associated with kcal values
 check <- clean.filled.data %>%

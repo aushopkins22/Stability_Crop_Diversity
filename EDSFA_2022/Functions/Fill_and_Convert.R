@@ -1,7 +1,6 @@
 ### Gap filling function:
-### Last modified: 9/6/2022
   ## Production and area data filled by linear interpolation
-  ## Price data are filled by the average of other states in that year
+  ## Price data filled by the average of other states in that year
   ## After filling, converts production to USD and kcal and incorporates the ppi correction
 
 Fill_and_Convert <- function(input.data,
