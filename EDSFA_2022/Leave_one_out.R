@@ -5,15 +5,15 @@ library(patchwork)
 library(ggrepel)
 
 
-source("./Functions/Calculate_Shannons_Diversity_updated.R")
+source("./Functions/Calculate_Shannons_Diversity.R")
 source("./Functions/Calculate_Production.R")
 source("./Functions/Calculate_Residuals.R")
-source("./Functions/Calculate_Stability_updated.R")
+source("./Functions/Calculate_Stability.R")
 
 
 ## Read in data, and mutate names to match the names in the clean data file.
 
-crop.list <- read_csv(file = "./Data/Inputs/Commodity_Input_Data_Trees.csv") %>%
+crop.list <- read_csv(file = "./Data/Inputs/Commodity_Input_Data.csv") %>%
                mutate(Crop_Name = ifelse(.$Crop_Utilization %in% c("SILAGE", "GRAIN"),  
                                          paste0(.$Crop, "-", .$Crop_Class, "-", .$Crop_Utilization), 
                                          paste0(.$Crop, "-", .$Crop_Class)))
