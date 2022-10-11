@@ -1,7 +1,5 @@
-### Function designed to take in the converted NASS data and return residuals of regressions of cropland area and USD and caloric production and yield by a quadratic function of year.
-### Updated: 7/18/2022
-### Last change author: Avery
-####################################
+# Function designed to take in the converted NASS data and return residuals of regressions of 
+#cropland area and USD and caloric production and yield by a quadratic function of year.
 
 Calculate_Residuals <- function(input.file){
   

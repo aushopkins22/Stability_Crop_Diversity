@@ -1,7 +1,6 @@
-### Function designed to take in the converted NASS data and the output from the residuals calculation and calculate the yield and production stability for USD and kcal over a given timeframe
-### Updated: 7/20/2022
-### Last change author: Avery
-####################################
+# Function designed to take in the converted NASS data and the output from the residuals calculation and 
+# calculate the yield and production stability for USD and kcal over a given timeframe
+
 
 Calculate_Stability <- function(production, residuals, diversity, timeframe){
   

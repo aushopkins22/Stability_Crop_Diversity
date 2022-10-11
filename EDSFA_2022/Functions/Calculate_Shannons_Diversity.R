@@ -1,7 +1,4 @@
-### Function designed calculate the Shannon's diversity index and the effective number of cropping species (ENCS) for the United States based on NASS data.
-### Updated: 7/1/2022
-### Last change author: Avery
-####################################
+# Function designed calculate the Shannon's diversity index for the United States based on NASS data.
 
 Calculate_Shannons_Diversity <- function(input.file){
 
@@ -48,15 +45,12 @@ Calculate_Shannons_Diversity <- function(input.file){
            Pi_ln_Pi_kcal = replace_na(Pi_ln_Pi_kcal, 0)) %>%
     ungroup()
   
-  #Summarize to state-level annual values of Shannons and ENCS for each variable
+  #Summarize to state-level annual values of Shannons for each variable
   calculate_shannons <- calculate_crop_vals_for_shannons %>%
     group_by(State_Abbr, fips, Year) %>%
     summarize(Shannons_area = -1*sum(Pi_ln_Pi_area, na.rm = T), 
               Shannons_usd = -1*sum(Pi_ln_Pi_usd, na.rm = T),
-              Shannons_kcal = -1*sum(Pi_ln_Pi_kcal, na.rm = T)) %>%
-    mutate(ENCS_area = exp(Shannons_area), 
-           ENCS_usd = exp(Shannons_usd), 
-           ENCS_kcal = exp(Shannons_kcal))
+              Shannons_kcal = -1*sum(Pi_ln_Pi_kcal, na.rm = T))
   
 }
     
