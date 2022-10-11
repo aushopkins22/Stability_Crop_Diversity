@@ -33,8 +33,8 @@ Key components of this code base are:
 		- Main text Figures 1 and 2 and corresponding results
 		- SI figures 1 through 7 
 
-3. "Leave_one_out.R" description
-	- Data inputs: 
-	- Outputs:
-		-Main text Figure 3 and corresponding results
+3. "Leave_one_out.R" description. 
+	- Data inputs:   
+	- Outputs:  
+		- Main text Figure 3 and corresponding results
             
