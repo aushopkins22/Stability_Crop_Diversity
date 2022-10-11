@@ -1,3 +1,5 @@
+# Calculate some basic summmary stats.
+
 NASS_Summary_Table <- function(commodity.data,
                                commodity.list){
   
