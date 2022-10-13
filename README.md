@@ -33,11 +33,11 @@ Key components of this code base are:
 		- Main text Figures 1 and 2 and corresponding results
 		- SI figures 1 through 7 
 
-3. "LRR_Analysis.R" description. 
-	- Data inputs:  - "Commodity_Input_Data.csv": Crop-specific query parameters corresponding to NASS classifications.       
-					- "Clean_Data.csv": Cleaned, aggregated, converted, and gap-filled data on crop area, caloric production, and USD production at the state-crop-year level.
-					- "Function_Groups.csv": Dataset that contains the functional groups of all the crops surveyed.
+3. "LRR_Analysis.R" includes code to conduct the crop-level leave-one-out analysis for the calculation of log response ratios (LRR) and destabilization potentials. 
+	- Data inputs:  
+		- "Commodity_Input_Data.csv": Crop-specific query parameters corresponding to NASS classifications.  
+		- "Clean_Data.csv": Cleaned, aggregated, converted, and gap-filled data on crop area, caloric production, and USD production at the state-crop-year level.  
+		- "Function_Groups.csv": Dataset that contains the functional groups of all the crops surveyed.  
 	- Outputs:  
-		- Main text Figure 3 and corresponding results
-		- Supplemental Figure 5
-            
+		- Main text Figure 3 and corresponding results 
+		- Supplemental Figure 5  
