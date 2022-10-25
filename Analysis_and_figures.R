@@ -101,7 +101,7 @@ ggplot(plotdf, aes(x = price, y = calorie)) +
   theme_classic() + 
   xlab("Average crop price (USD)") + ylab("Crop caloric content (Kcal)")
 
-ggsave(filename = "Figure S3 Caloric content by price.jpeg", path = "~/Desktop", units = "in", height = 4, width = 6)
+ggsave(filename = "./Figures/Figure S3 Caloric content by price.eps", units = "in", height = 4, width = 6)
   
 
 ### Map diversity
@@ -224,7 +224,7 @@ d <- plot_usmap(data = plotdf, values = "stability_usd_trunc", size = 0.1, exclu
 
 (a + b + plot_layout(guides = "collect") & theme(legend.position = 'bottom', legend.margin = margin(t = -25), legend.justification = "center"))/(c + d + plot_layout(guides = "collect") & theme(legend.position = 'bottom', legend.margin = margin(t = -25), legend.justification = "center"))
 
-ggsave(filename = "Fig 1 average diversity and stability maps.jpeg", path = "~/Desktop", units = "in", height = 7, width = 10)
+ggsave(filename = "./Figures/Figure 1 average diversity and stability maps.eps", units = "in", height = 7, width = 10)
 
 # Calculate number of crops per state each year
 n_crops <- nass %>%
@@ -335,7 +335,7 @@ ggplot(data = plotdf,
         legend.text = element_text(size = 8),
         legend.title = element_text(size = 10))
 
-ggsave(filename = "./Figures/Figure S4 CPD by diversity.jpeg", units = "in", height = 6, width = 9)
+ggsave(filename = "./Figures/Figure S4 CPD by diversity.eps", units = "in", height = 6, width = 9)
 
 #####Figure S1, S5, and S6: diversity and stability maps by decade#####
 # Crop diversity maps by decade
@@ -365,7 +365,7 @@ b <- plot_usmap(data = plotdf, values = "rm_shannons_usd", size = 0.1, exclude =
 
 a / b
 
-ggsave(filename = "Figure S5 Decadal diversity maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
+ggsave(filename = "./Figures/Figure S5 Decadal diversity maps.eps", units = "in", height = 4, width = 10)
 
 # Yield stability maps by decade
 a <- plot_usmap(data = plotdf, values = "stability_kcal_yield", size = 0.1, exclude = c("HI", "AK", "DC")) +
@@ -392,7 +392,7 @@ b <- plot_usmap(data = plotdf, values = "stability_usd_yield", size = 0.1, exclu
 
 a / b
 
-ggsave(filename = "Figure S6 Decadal yield stability maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
+ggsave(filename = "./Figures/Figure S6 Decadal yield stability maps.eps", units = "in", height = 4, width = 10)
 
 #Check caloric stability in AZ in 1990s
 az <- subset(nass, State_Abbr == "AZ")
@@ -423,7 +423,7 @@ b <- plot_usmap(data = plotdf, values = "stability_usd_prod", size = 0.1, exclud
 
 a / b
 
-ggsave(filename = "Figure S1 Decadal production stability maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
+ggsave(filename = "./Figures/Figure S1 Decadal production stability maps.eps", units = "in", height = 4, width = 10)
 
 #####Figure 2: Decadal regressions: full dataset####
 shannons <- Calculate_Shannons_Diversity(nass)
@@ -491,7 +491,7 @@ b <- ggplot(usd_coeff, aes(x = reorder(variable, Estimate), y = Estimate)) +
         axis.text.x = element_text(angle = 90, hjust = 1))
 
 a/b
-ggsave(filename = "Fig 2 yield stability coefficients.jpeg", path = "~/Desktop", units = "in", height = 6.5, width = 3.5)
+ggsave(filename = "./Figures/Figure 2 yield stability coefficients.eps", units = "in", height = 6.5, width = 3.5)
 
 #####Figure S2, S7: Decadal regressions: comparing datasets and plotting production coefficients#####
 # Calculate for only crops present somewhere in 1981:
@@ -639,7 +639,7 @@ b <- ggplot(usd_coeff_usd, aes(x = reorder(variable, Estimate), y = Estimate)) +
 
 a|b
 
-ggsave(filename = "Fig S6 all subsets yield coefficients.png", path = "~/Desktop", units = "in", height = 5.5, width = 10)
+ggsave(filename = "./Figures/Figure S7 all subsets yield coefficients.eps", units = "in", height = 5.5, width = 10)
 
 ###Extract and plot production coefficients
 # caloric prod
@@ -709,6 +709,6 @@ b <- ggplot(usd_coeff_usd, aes(x = reorder(variable, Estimate), y = Estimate)) +
 
 a|b
 
-ggsave(filename = "Fig S7 all subsets prod coefficients.png", path = "~/Desktop", units = "in", height = 5.5, width = 10)
+ggsave(filename = "./Figures/Figure S2 all subsets prod coefficients.eps", units = "in", height = 5.5, width = 10)
 
 

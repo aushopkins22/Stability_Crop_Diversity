@@ -1,0 +1,732 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%DocumentNeededResources: font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Helvetica-Oblique
+%%+ font Helvetica-BoldOblique
+%%+ font Symbol
+%%Title: R Graphics Output
+%%Creator: R Software
+%%Pages: (atend)
+%%BoundingBox: 0 0 648 432
+%%EndComments
+%%BeginProlog
+/bp  { gs sRGB gs } def
+% begin .ps.prolog
+/gs  { gsave } bind def
+/gr  { grestore } bind def
+/ep  { showpage gr gr } bind def
+/m   { moveto } bind def
+/l  { rlineto } bind def
+/np  { newpath } bind def
+/cp  { closepath } bind def
+/f   { fill } bind def
+/o   { stroke } bind def
+/c   { newpath 0 360 arc } bind def
+/r   { 4 2 roll moveto 1 copy 3 -1 roll exch 0 exch rlineto 0 rlineto -1 mul 0 exch rlineto closepath } bind def
+/p1  { stroke } bind def
+/p2  { gsave bg fill grestore newpath } bind def
+/p3  { gsave bg fill grestore stroke } bind def
+/p6  { gsave bg eofill grestore newpath } bind def
+/p7  { gsave bg eofill grestore stroke } bind def
+/t   { 5 -2 roll moveto gsave rotate
+       1 index stringwidth pop
+       mul neg 0 rmoveto show grestore } bind def
+/ta  { 4 -2 roll moveto gsave rotate show } bind def
+/tb  { 2 -1 roll 0 rmoveto show } bind def
+/cl  { grestore gsave newpath 3 index 3 index moveto 1 index
+       4 -1 roll lineto  exch 1 index lineto lineto
+       closepath clip newpath } bind def
+/rgb { setrgbcolor } bind def
+/s   { scalefont setfont } bind def
+% end   .ps.prolog
+/sRGB { [ /CIEBasedABC
+          << /DecodeLMN
+               [ { dup 0.03928 le
+                        {12.92321 div}
+                        {0.055 add 1.055 div 2.4 exp }
+                     ifelse
+                 } bind dup dup
+               ]
+             /MatrixLMN [0.412457 0.212673 0.019334
+                         0.357576 0.715152 0.119192
+                         0.180437 0.072175 0.950301]
+             /WhitePoint [0.9505 1.0 1.0890]
+           >>
+         ] setcolorspace } bind def
+/srgb { setcolor } bind def
+%%IncludeResource: font Helvetica
+/Helvetica findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font1 exch definefont pop
+%%IncludeResource: font Helvetica-Bold
+/Helvetica-Bold findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font2 exch definefont pop
+%%IncludeResource: font Helvetica-Oblique
+/Helvetica-Oblique findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font3 exch definefont pop
+%%IncludeResource: font Helvetica-BoldOblique
+/Helvetica-BoldOblique findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  /Encoding ISOLatin1Encoding def
+  currentdict
+  end
+/Font4 exch definefont pop
+%%IncludeResource: font Symbol
+/Symbol findfont
+dup length dict begin
+  {1 index /FID ne {def} {pop pop} ifelse} forall
+  currentdict
+  end
+/Font5 exch definefont pop
+%%EndProlog
+%%Page: 1 1
+bp
+/bg { 1 1 1 srgb } def
+0.00 0.00 648.00 432.00 r p2
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+0.00 0.00 648.00 432.00 r p3
+0.00 0.00 648.00 432.00 cl
+40.56 38.48 642.52 426.52 cl
+/bg { 1 1 1 srgb } def
+0 0 0 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+40.56 38.48 601.96 388.04 r p3
+1 1 1 srgb
+0.53 setlinewidth
+[] 0 setdash
+0 setlinecap
+np
+40.56 124.76 m
+601.96 0 l
+o
+np
+40.56 235.56 m
+601.96 0 l
+o
+np
+40.56 346.36 m
+601.96 0 l
+o
+np
+63.70 38.48 m
+0 388.04 l
+o
+np
+208.47 38.48 m
+0 388.04 l
+o
+np
+353.24 38.48 m
+0 388.04 l
+o
+np
+498.01 38.48 m
+0 388.04 l
+o
+1.07 setlinewidth
+[] 0 setdash
+np
+40.56 69.36 m
+601.96 0 l
+o
+np
+40.56 180.16 m
+601.96 0 l
+o
+np
+40.56 290.96 m
+601.96 0 l
+o
+np
+40.56 401.76 m
+601.96 0 l
+o
+np
+136.09 38.48 m
+0 388.04 l
+o
+np
+280.85 38.48 m
+0 388.04 l
+o
+np
+425.62 38.48 m
+0 388.04 l
+o
+np
+570.39 38.48 m
+0 388.04 l
+o
+0.4000 0.6510 0.1176 srgb
+1 setlinecap
+np
+569.50 167.96 m
+9.54 1.44 l
+o
+0.8510 0.3725 0.0078 srgb
+np
+423.68 143.32 m
+-9.22 7.93 l
+o
+np
+390.76 143.86 m
+-10.38 8.59 l
+o
+np
+460.18 175.38 m
+-13.88 -13.95 l
+o
+0.4000 0.6510 0.1176 srgb
+np
+393.59 175.41 m
+-4.94 -6.92 l
+o
+0.8510 0.3725 0.0078 srgb
+np
+601.18 237.74 m
+-13.51 2.35 l
+o
+0.4000 0.6510 0.1176 srgb
+np
+317.13 254.52 m
+8.25 -6.25 l
+o
+0.9059 0.1608 0.5412 srgb
+np
+570.75 257.97 m
+7.43 -7.08 l
+o
+/Font1 findfont 7 s
+565.75 232.99 (Almonds) .5 0 t
+0.8510 0.3725 0.0078 srgb
+307.16 200.26 (Apples) .5 0 t
+531.57 177.71 (Apr) 0 ta
+0.105 (icots) tb gr
+0.4000 0.6510 0.1176 srgb
+590.39 106.47 (Ar) 0 ta
+0.280 (tichok) tb
+-0.140 (es) tb gr
+480.53 60.59 (Aspar) 0 ta
+-0.070 (agus) tb gr
+0.8510 0.3725 0.0078 srgb
+549.45 219.63 (A) 0 ta
+-0.280 (v) tb
+-0.175 (ocados) tb gr
+0.1059 0.6196 0.4667 srgb
+197.45 409.62 (Bar) 0 ta
+0.105 (le) tb
+-0.140 (y) tb gr
+0.4588 0.4392 0.7020 srgb
+225.67 312.23 (Beans) .5 0 t
+342.59 272.06 (Beans) .5 0 t
+290.87 175.92 (Beans) .5 0 t
+0.4000 0.6510 0.1176 srgb
+244.64 277.14 (Beets) .5 0 t
+0.8510 0.3725 0.0078 srgb
+390.57 151.86 (Blackberr) 0 ta
+0.105 (ies) tb gr
+352.53 124.59 (Blueberr) 0 ta
+0.105 (ies) tb gr
+403.21 164.99 (Bo) 0 ta
+-0.210 (ysenberr) tb
+0.105 (ies) tb gr
+0.4000 0.6510 0.1176 srgb
+582.60 151.60 (Broccoli) .5 0 t
+574.84 163.93 (Br) 0 ta
+0.105 (ussels Sprouts) tb gr
+395.54 189.94 (Cab) 0 ta
+-0.070 (bage) tb gr
+0.9059 0.1608 0.5412 srgb
+289.94 397.96 (Canola) .5 0 t
+0.4000 0.6510 0.1176 srgb
+531.11 243.34 (Carrots) .5 0 t
+549.08 89.78 (Cauliflo) 0 ta
+-0.105 (w) tb
+-0.070 (er) tb gr
+547.37 165.40 (Celer) 0 ta
+0.210 (y) tb gr
+0.8510 0.3725 0.0078 srgb
+425.53 139.61 (Cherr) 0 ta
+0.105 (ies) tb gr
+0.1059 0.6196 0.4667 srgb
+49.34 397.61 (Cor) 0 ta
+0.175 (n) tb gr
+0.8510 0.3725 0.0078 srgb
+141.37 186.16 (Cr) 0 ta
+-0.070 (anberr) tb
+0.105 (ies) tb gr
+0.4000 0.6510 0.1176 srgb
+333.30 153.68 (Cucumbers) .5 0 t
+0.8510 0.3725 0.0078 srgb
+533.05 227.96 (Dates) .5 0 t
+0.4000 0.6510 0.1176 srgb
+356.05 141.27 (Eggplant) .5 0 t
+395.11 113.76 (Escarole & Endiv) 0 ta
+-0.175 (e) tb gr
+0.8510 0.3725 0.0078 srgb
+593.86 222.73 (Figs) .5 0 t
+0.9059 0.1608 0.5412 srgb
+293.40 383.63 (Flaxseed) .5 0 t
+0.4000 0.6510 0.1176 srgb
+554.32 247.07 (Gar) 0 ta
+0.105 (lic) tb gr
+0.8510 0.3725 0.0078 srgb
+230.07 210.51 (Gr) 0 ta
+-0.070 (apefr) tb
+0.105 (uit) tb gr
+539.09 207.27 (Gr) 0 ta
+-0.070 (apes) tb gr
+0.9059 0.1608 0.5412 srgb
+331.47 243.98 (Haz) 0 ta
+-0.105 (eln) tb
+-0.070 (uts) tb gr
+0.8510 0.3725 0.0078 srgb
+584.50 181.69 (Kiwifr) 0 ta
+0.105 (uit) tb gr
+0.4588 0.4392 0.7020 srgb
+206.16 331.89 (Lentils) .5 0 t
+0.4000 0.6510 0.1176 srgb
+546.48 138.09 (Lettuce) .5 0 t
+566.29 109.11 (Lettuce) .5 0 t
+521.90 150.41 (Lettuce) .5 0 t
+0.8510 0.3725 0.0078 srgb
+377.01 137.04 (Loganberr) 0 ta
+0.105 (ies) tb gr
+495.44 172.67 (Melons) .5 0 t
+525.73 164.54 (Melons) .5 0 t
+348.19 208.72 (Melons) .5 0 t
+0.1059 0.6196 0.4667 srgb
+136.82 392.15 (Millet) .5 0 t
+0.8510 0.3725 0.0078 srgb
+539.11 191.92 (Nectar) 0 ta
+0.105 (ines) tb gr
+0.1059 0.6196 0.4667 srgb
+139.58 406.60 (Oats) .5 0 t
+0.4000 0.6510 0.1176 srgb
+321.38 123.54 (Okr) 0 ta
+-0.070 (a) tb gr
+0.8510 0.3725 0.0078 srgb
+585.32 247.59 (Oliv) 0 ta
+-0.175 (es) tb gr
+0.4000 0.6510 0.1176 srgb
+373.41 231.62 (Onions) .5 0 t
+0.8510 0.3725 0.0078 srgb
+291.59 231.13 (Or) 0 ta
+-0.070 (anges) tb gr
+449.70 177.18 (P) 0 ta
+-0.350 (eaches) tb gr
+0.4588 0.4392 0.7020 srgb
+254.09 337.14 (P) 0 ta
+-0.350 (ean) tb
+-0.070 (uts) tb gr
+0.8510 0.3725 0.0078 srgb
+390.41 212.40 (P) 0 ta
+-0.350 (ears) tb gr
+0.4588 0.4392 0.7020 srgb
+187.51 306.92 (P) 0 ta
+-0.350 (eas) tb gr
+232.55 351.79 (P) 0 ta
+-0.350 (eas) tb gr
+189.77 220.16 (P) 0 ta
+-0.350 (eas) tb gr
+0.9059 0.1608 0.5412 srgb
+261.16 227.05 (P) 0 ta
+-0.350 (ecans) tb gr
+0.4000 0.6510 0.1176 srgb
+458.03 158.49 (P) 0 ta
+-0.350 (eppers) tb gr
+381.25 177.21 (P) 0 ta
+-0.350 (eppers) tb gr
+0.9059 0.1608 0.5412 srgb
+605.37 206.55 (Pistachios) .5 0 t
+0.8510 0.3725 0.0078 srgb
+603.87 194.11 (Plums) .5 0 t
+0.4000 0.6510 0.1176 srgb
+194.27 288.44 (P) 0 ta
+-0.350 (otatoes) tb gr
+0.8510 0.3725 0.0078 srgb
+603.03 235.13 (Pr) 0 ta
+0.105 (unes) tb gr
+0.4000 0.6510 0.1176 srgb
+229.65 181.34 (Pumpkins) .5 0 t
+369.16 105.66 (Radishes) .5 0 t
+0.8510 0.3725 0.0078 srgb
+551.51 125.73 (Raspberr) 0 ta
+0.105 (ies) tb gr
+0.1059 0.6196 0.4667 srgb
+247.12 369.37 (Rice) .5 0 t
+197.25 392.65 (Ry) 0 ta
+-0.140 (e) tb gr
+0.9059 0.1608 0.5412 srgb
+412.37 322.75 (Safflo) 0 ta
+-0.105 (w) tb
+-0.070 (er) tb gr
+0.1059 0.6196 0.4667 srgb
+175.54 413.36 (Sorghum) .5 0 t
+0.4588 0.4392 0.7020 srgb
+72.37 381.10 (So) 0 ta
+-0.210 (ybeans) tb gr
+0.4000 0.6510 0.1176 srgb
+514.98 136.33 (Spinach) .5 0 t
+362.39 165.97 (Squash) .5 0 t
+0.8510 0.3725 0.0078 srgb
+502.60 102.14 (Str) 0 ta
+-0.070 (a) tb
+-0.140 (wberr) tb
+0.105 (ies) tb gr
+0.4000 0.6510 0.1176 srgb
+201.59 375.29 (Sugarbeets) .5 0 t
+0.9059 0.1608 0.5412 srgb
+194.01 351.65 (Sunflo) 0 ta
+-0.105 (w) tb
+-0.070 (er) tb gr
+0.4000 0.6510 0.1176 srgb
+252.33 188.16 (Sw) 0 ta
+-0.070 (eet Cor) tb
+0.175 (n) tb gr
+284.28 256.32 (Sw) 0 ta
+-0.070 (eet P) tb
+-0.350 (otatoes) tb gr
+0.8510 0.3725 0.0078 srgb
+140.38 253.65 (T) 0 ta
+-0.840 (angelos) tb gr
+432.87 211.35 (T) 0 ta
+-0.840 (anger) tb
+0.105 (ines) tb gr
+0.4000 0.6510 0.1176 srgb
+463.80 137.45 (T) 0 ta
+-0.840 (omatoes) tb gr
+0.9059 0.1608 0.5412 srgb
+555.16 259.77 (W) 0 ta
+-0.280 (aln) tb
+-0.070 (uts) tb gr
+0.1059 0.6196 0.4667 srgb
+166.95 387.56 (Wheat) .5 0 t
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 12 s
+0 0 0 srgb
+35.63 65.05 (4) 1 0 t
+35.63 175.85 (6) 1 0 t
+35.63 286.65 (8) 1 0 t
+35.63 397.45 (10) 1 0 t
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+37.82 69.36 m
+2.74 0 l
+o
+np
+37.82 180.16 m
+2.74 0 l
+o
+np
+37.82 290.96 m
+2.74 0 l
+o
+np
+37.82 401.76 m
+2.74 0 l
+o
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.2000 0.2000 0.2000 srgb
+1.07 setlinewidth
+[] 0 setdash
+0 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+np
+136.09 35.74 m
+0 2.74 l
+o
+np
+280.85 35.74 m
+0 2.74 l
+o
+np
+425.62 35.74 m
+0 2.74 l
+o
+np
+570.39 35.74 m
+0 2.74 l
+o
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 12 s
+0 0 0 srgb
+136.09 24.93 (1.5) .5 0 t
+280.85 24.93 (2.0) .5 0 t
+425.62 24.93 (2.5) .5 0 t
+570.39 24.93 (3.0) .5 0 t
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 15 s
+0 0 0 srgb
+279.03 8.78 (Economic div) 0 ta
+-0.375 (ersity) tb gr
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 15 s
+0 0 0 srgb
+16.25 160.82 (ln\(Calor) 90 ta
+0.225 (ies per dollar\)) tb gr
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+536.62 320.22 79.38 96.19 r p2
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 10 s
+0 0 0 srgb
+542.10 402.65 (Crop T) 0 ta
+-1.200 (ype) tb gr
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+542.10 382.39 14.17 14.17 r p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 0.1059 0.6196 0.4667 srgb } def
+0.1059 0.6196 0.4667 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+549.18 389.48 3.56 c p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+542.10 368.22 14.17 14.17 r p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 0.8510 0.3725 0.0078 srgb } def
+0.8510 0.3725 0.0078 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+549.18 375.31 3.56 c p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+542.10 354.05 14.17 14.17 r p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 0.4588 0.4392 0.7020 srgb } def
+0.4588 0.4392 0.7020 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+549.18 361.13 3.56 c p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+542.10 339.87 14.17 14.17 r p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 0.9059 0.1608 0.5412 srgb } def
+0.9059 0.1608 0.5412 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+549.18 346.96 3.56 c p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 1 1 1 srgb } def
+1 1 1 srgb
+1.07 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+542.10 325.70 14.17 14.17 r p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/bg { 0.4000 0.6510 0.1176 srgb } def
+0.4000 0.6510 0.1176 srgb
+0.71 setlinewidth
+[] 0 setdash
+1 setlinecap
+1 setlinejoin
+10.00 setmiterlimit
+549.18 332.79 3.56 c p3
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 8 s
+0 0 0 srgb
+561.25 386.61 (Cereal Gr) 0 ta
+-0.080 (ains) tb gr
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 8 s
+0 0 0 srgb
+561.25 372.43 (Fr) 0 ta
+0.120 (uits) tb gr
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 8 s
+0 0 0 srgb
+561.25 358.26 (Legumes) 0 0 t
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 8 s
+0 0 0 srgb
+561.25 344.09 (Nut & Seed) 0 0 t
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+/Font1 findfont 8 s
+0 0 0 srgb
+561.25 329.91 (V) 0 ta
+-0.640 (egetab) tb
+-0.160 (les) tb gr
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+0.00 0.00 648.00 432.00 cl
+ep
+%%Trailer
+%%Pages: 1
+%%EOF
