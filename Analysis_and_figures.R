@@ -44,7 +44,7 @@ source("./Functions/Calculate_Production.R")
 source("./Functions/Calculate_Residuals.R")
 source("./Functions/Calculate_Stability.R")
 
-#####Figure 1 and S1: Maps of average diversity and stability#####
+#####Figure 1 and S5: Maps of average diversity and stability#####
 shannons <- Calculate_Shannons_Diversity(nass)
 residuals <- Calculate_Residuals(nass)
 production <- Calculate_Production(nass, 10)
@@ -101,7 +101,7 @@ ggplot(plotdf, aes(x = price, y = calorie)) +
   theme_classic() + 
   xlab("Average crop price (USD)") + ylab("Crop caloric content (Kcal)")
 
-ggsave(filename = "Figure S1 Caloric content by price.jpeg", path = "~/Desktop", units = "in", height = 4, width = 6)
+ggsave(filename = "Figure S3 Caloric content by price.jpeg", path = "~/Desktop", units = "in", height = 4, width = 6)
   
 
 ### Map diversity
@@ -224,7 +224,7 @@ d <- plot_usmap(data = plotdf, values = "stability_usd_trunc", size = 0.1, exclu
 
 (a + b + plot_layout(guides = "collect") & theme(legend.position = 'bottom', legend.margin = margin(t = -25), legend.justification = "center"))/(c + d + plot_layout(guides = "collect") & theme(legend.position = 'bottom', legend.margin = margin(t = -25), legend.justification = "center"))
 
-ggsave(filename = "average diversity and stability maps.jpeg", path = "~/Desktop", units = "in", height = 7, width = 10)
+ggsave(filename = "Fig 1 average diversity and stability maps.jpeg", path = "~/Desktop", units = "in", height = 7, width = 10)
 
 # Calculate number of crops per state each year
 n_crops <- nass %>%
@@ -255,50 +255,6 @@ diversity_drivers <- left_join(diversity_drivers, avg_irr) %>%
          tavg_quad = m_prism_tavg^2, 
          irr_quad = m_prop_irr^2)
 
-
-nassqs_auth("11FCF4DC-1B74-3577-B8A5-5F09B27E2390")
-
-###try some socio-economic predictors as well: average farm size and ownership
-
-#Sum acres and operators across tenure classes to get farm sizes
-all_socioeconomic <- nassqs(agg_level_desc = "STATE", 
-               commodity_desc = "AG LAND",
-               class_desc = "CROPLAND, HARVESTED", 
-               prodn_practice_desc = "ALL PRODUCTION PRACTICES",
-               domain_desc = "TENURE", 
-               source_desc = "CENSUS")
-
-total_acreage <- all_socioeconomic %>%
-  filter(unit_desc == "ACRES") %>%
-  group_by(state_fips_code, state_alpha, year) %>%
-  summarize(total_acres = sum(Value)) %>%
-  ungroup()
-
-owned_acreage <- all_socioeconomic %>%
-  filter(unit_desc == "ACRES", 
-         domaincat_desc != "TENURE: (TENANT)") %>%
-  group_by(state_fips_code, state_alpha, year) %>%
-  summarize(owned_acres = sum(Value)) %>%
-  ungroup()
-  
-number_farms <- all_socioeconomic %>%  
-  filter(unit_desc == "OPERATIONS") %>%
-  group_by(state_fips_code, state_alpha, year) %>%
-  summarize(total_operations = sum(Value)) %>%
-  ungroup()
-
-all <- left_join(total_acreage, owned_acreage) %>%
-  left_join(., number_farms) %>%
-  mutate(prop_owned = owned_acres/total_acres, 
-         avg_size = total_acres/total_operations) %>%
-  group_by(state_alpha, state_fips_code) %>%
-  summarize(prop_owned = mean(prop_owned), 
-            avg_size = mean(avg_size)) %>%
-  rename(fips = state_fips_code, State_Abbr = state_alpha) %>%
-  ungroup()
-
-diversity_drivers <- left_join(diversity_drivers, all)
-
 cor.test(diversity_drivers$m_prism_tavg, diversity_drivers$shannons_kcal)
 cor.test(diversity_drivers$m_prism_tavg, diversity_drivers$shannons_usd)
 
@@ -308,15 +264,7 @@ cor.test(diversity_drivers$m_prism_ppt, diversity_drivers$shannons_usd)
 cor.test(diversity_drivers$m_prop_irr, diversity_drivers$shannons_kcal)
 cor.test(diversity_drivers$m_prop_irr, diversity_drivers$shannons_usd)
 
-cor.test(diversity_drivers$avg_size, diversity_drivers$shannons_kcal)
-cor.test(diversity_drivers$avg_size, diversity_drivers$shannons_usd)
-
-cor.test(diversity_drivers$prop_owned, diversity_drivers$shannons_kcal)
-cor.test(diversity_drivers$prop_owned, diversity_drivers$shannons_usd)
-
-
-#####Figure S2: ln(Calories per dollar) by diversity######
-
+#####Figure S4: ln(Calories per dollar) by diversity######
 #Calculate diversity by crop 
 crop_diversity <- nass %>% 
   group_by(Crop_Name) %>% 
@@ -387,9 +335,9 @@ ggplot(data = plotdf,
         legend.text = element_text(size = 8),
         legend.title = element_text(size = 10))
 
-ggsave(filename = "./Figures/Figure S2 CPD by diversity.jpeg", units = "in", height = 6, width = 9)
+ggsave(filename = "./Figures/Figure S4 CPD by diversity.jpeg", units = "in", height = 6, width = 9)
 
-#####Figure S3-S5: diversity and stability maps by decade#####
+#####Figure S1, S5, and S6: diversity and stability maps by decade#####
 # Crop diversity maps by decade
 plotdf <- decadal_full_dataset
 
@@ -417,7 +365,7 @@ b <- plot_usmap(data = plotdf, values = "rm_shannons_usd", size = 0.1, exclude =
 
 a / b
 
-ggsave(filename = "Figure S3 Decadal diversity maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
+ggsave(filename = "Figure S5 Decadal diversity maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
 
 # Yield stability maps by decade
 a <- plot_usmap(data = plotdf, values = "stability_kcal_yield", size = 0.1, exclude = c("HI", "AK", "DC")) +
@@ -444,7 +392,7 @@ b <- plot_usmap(data = plotdf, values = "stability_usd_yield", size = 0.1, exclu
 
 a / b
 
-ggsave(filename = "Figure S4 Decadal yield stability maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
+ggsave(filename = "Figure S6 Decadal yield stability maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
 
 #Check caloric stability in AZ in 1990s
 az <- subset(nass, State_Abbr == "AZ")
@@ -475,7 +423,7 @@ b <- plot_usmap(data = plotdf, values = "stability_usd_prod", size = 0.1, exclud
 
 a / b
 
-ggsave(filename = "Figure S5 Decadal production stability maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
+ggsave(filename = "Figure S1 Decadal production stability maps.jpeg", path = "~/Desktop", units = "in", height = 4, width = 10)
 
 #####Figure 2: Decadal regressions: full dataset####
 shannons <- Calculate_Shannons_Diversity(nass)
@@ -545,7 +493,7 @@ b <- ggplot(usd_coeff, aes(x = reorder(variable, Estimate), y = Estimate)) +
 a/b
 ggsave(filename = "Fig 2 yield stability coefficients.jpeg", path = "~/Desktop", units = "in", height = 6.5, width = 3.5)
 
-#####Figure S6-7: Decadal regressions: comparing datasets and plotting production coefficients#####
+#####Figure S2, S7: Decadal regressions: comparing datasets and plotting production coefficients#####
 # Calculate for only crops present somewhere in 1981:
 crops_1981 <- aggregate(Year~Crop_Name, nass, min) %>%
   filter(Year == 1981)
@@ -762,89 +710,5 @@ b <- ggplot(usd_coeff_usd, aes(x = reorder(variable, Estimate), y = Estimate)) +
 a|b
 
 ggsave(filename = "Fig S7 all subsets prod coefficients.png", path = "~/Desktop", units = "in", height = 5.5, width = 10)
-
-
-
-#####Testing functional diversity in fig 2 regression#####
-temp <- unique(fun_groups[, c("Crop_Name", "group")])
-
-nass_functional <- nass %>%
-  left_join(., temp) %>% 
-  select(-Crop_Name) %>%
-  rename(Crop_Name = group) %>%
-  group_by(State_Abbr, Year, Crop_Name, fips) %>%
-  summarize(Crop_Area_ha = sum(Crop_Area_ha, na.rm = T), 
-            Production_kg = sum(Production_kg, na.rm = T), 
-            Production_kcal = sum(Production_kcal, na.rm = T), 
-            Production_USD = sum(Production_USD, na.rm = T))
-
-shannons_fun <- Calculate_Shannons_Diversity(nass_functional)
-
-residuals <- Calculate_Residuals(nass)
-production <- Calculate_Production(nass, 10)
-decadal_full_dataset <- Calculate_Stability(production, residuals, shannons_fun, 10) %>%
-  filter(Year %in% c(1990, 2000, 2010, 2020)) %>% # Years 1990, 2000, 2010, and 2020 each reflect the preceding decade
-  select(Year, State_Abbr, fips, stability_kcal_prod, stability_kcal_yield, stability_usd_prod, stability_usd_yield, instability_area, rm_shannons_area, rm_shannons_usd, rm_shannons_kcal)
-
-#Center and scale variables
-scaled_decadal_all <- left_join(cov_decadal, decadal_full_dataset) %>%
-  mutate_at(c(2:4, 7:14), scale) %>%
-  mutate(Year = as.character(Year))
-
-# Fit model for kcal yield and production
-kcalyield_mod_all <- lm(stability_kcal_yield~rm_shannons_kcal + Year + prop_irr + tavg_instability_cv + ppt_instability_cv, scaled_decadal_all)
-kcalprod_mod_all <- lm(stability_kcal_prod~rm_shannons_kcal + Year + prop_irr + tavg_instability_cv + ppt_instability_cv, scaled_decadal_all)
-
-# Fit model for usd yield
-usdyield_mod_all <- lm(stability_usd_yield~rm_shannons_usd + Year + prop_irr + tavg_instability_cv + ppt_instability_cv, scaled_decadal_all)
-usdprod_mod_all <- lm(stability_usd_prod~rm_shannons_usd + Year + prop_irr + tavg_instability_cv + ppt_instability_cv, scaled_decadal_all)
-
-summary.lm(lm(kcalyield_mod_all))
-summary.lm(lm(usdyield_mod_all)) 
-summary.lm(lm(kcalprod_mod_all))
-summary.lm(lm(usdprod_mod_all)) 
-
-#Plot coefficients
-kcal_coeff <- as.data.frame(summary(kcalyield_mod_all)$coefficients) %>%
-  mutate(variable = rownames(.)) %>%
-  filter(!(variable %in% c("(Intercept)", "Year2000", "Year2010", "Year2020"))) %>%
-  mutate(variable = factor(variable, 
-                           levels = c("rm_shannons_kcal", "ppt_instability_cv", "prop_irr", "tavg_instability_cv"),
-                           labels = c("Crop diversity", "PPT instability", "Proportion irrigated", "Tavg instability")))
-
-usd_coeff <- as.data.frame(summary(usdyield_mod_all)$coefficients) %>%
-  mutate(variable = rownames(.)) %>%
-  filter(!(variable %in% c("(Intercept)", "Year2000", "Year2010", "Year2020"))) %>%
-  mutate(variable = factor(variable, 
-                           levels = c("rm_shannons_usd", "ppt_instability_cv", "prop_irr", "tavg_instability_cv"),
-                           labels = c("Crop diversity", "PPT instability", "Proportion irrigated", "Tavg instability")))
-
-a <- ggplot(kcal_coeff, aes(x = reorder(variable, Estimate), y = Estimate)) + 
-  geom_pointrange(aes(ymin = (Estimate - 1.96*`Std. Error`), 
-                      ymax = (Estimate + 1.96*`Std. Error`))) + 
-  theme_classic(base_size = 12) + 
-  ylab("Effect on caloric yield stability") + 
-  xlab(NULL) + 
-  geom_hline(yintercept = 0, linetype = "dashed") + 
-  scale_x_discrete(limits = c("Crop diversity", "PPT instability", "Tavg instability", "Proportion irrigated")) +
-  labs(tag = "(a)") + 
-  theme(plot.tag.position = c(0.22, 0.95), plot.tag = element_text(size = 10),
-        axis.text.x = element_blank()) 
-
-b <- ggplot(usd_coeff, aes(x = reorder(variable, Estimate), y = Estimate)) + 
-  geom_pointrange(aes(ymin = (Estimate - 1.96*`Std. Error`), 
-                      ymax = (Estimate + 1.96*`Std. Error`))) + 
-  theme_classic(base_size = 12) + 
-  ylab("Effect on economic yield stability") + 
-  xlab(NULL) + 
-  geom_hline(yintercept = 0, linetype = "dashed") + 
-  scale_x_discrete(limits = c("Crop diversity", "PPT instability", "Tavg instability", "Proportion irrigated")) +
-  labs(tag = "(b)") + 
-  theme(plot.tag.position = c(0.22, 0.95), plot.tag = element_text(size = 10),  
-        axis.text.x = element_text(angle = 90, hjust = 1))
-
-a/b
-ggsave(filename = "Fig 2 yield stability coefficients.jpeg", path = "~/Desktop", units = "in", height = 6.5, width = 3.5)
-
 
 
