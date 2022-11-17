@@ -2,10 +2,11 @@
 
 ## Overview
 
-!! This repository contains R code and data associated with the manuscript XXXX. 
+This repository contains the R code and data associated with the following manuscript:
 
-!! Add some background/abstract type text here. 
+Driscoll A W, Leuthold S J, Choi E, Clark S M, Cleveland D M, Dixon M, Hsieh M, Sitterson J and Mueller N 2022 Divergent impacts of crop diversity on caloric and economic yield stability Environ. Res. Lett. DOI: 10.1088/1748-9326/aca2be.
 
+There is ongoing interest in the drivers of yield stability. This analysis evaluates the relationship between state-level crop diversity and both economic and caloric yield stability in the United States. We use crop area, production, and price data from the US Department of Agriculture National Agricultural Statistics Service (USDA NASS) from 1981–2020 to assess the relationship between crop diversity and the stability of both economic and caloric yields at the state level within the USA. The code and data needed to reproduce the results and figures included in the manuscript are provided in this respository. All original data are publicly available, and data sources are detailed in the methods. 
 
 ## File descriptions
 
